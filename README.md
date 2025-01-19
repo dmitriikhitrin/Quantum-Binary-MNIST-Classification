@@ -12,9 +12,9 @@ In the upcoming exploration, two distinct data encoding methods will be investig
 
 In the amplitude encoding method, the encoding scheme is more intricate. The n'th training sample, denoted as \( X_n \), can be encoded as 
 
-\[
+$$
 \ket{X_n} = \frac{1}{\sqrt{N}} \sum_{i=0}^{N-1} \ket{i} \otimes \ket{I_i}
-\]
+$$
 
 Here, the \( i^{\text{th}} \) term in the \( \ket{X_n} \) superposition corresponds to the pixel's number \( i \) in binary representation, tensor-multiplied with its intensity \( I_i \). Consequently, the number of qubits required to encode an image with \( N \) pixels is given by \( \lceil \log(N) \rceil + 1 = O(\log(N)) \), where we need \( \lceil \log(N) \rceil \) qubits to track \( N \) numbers and an additional qubit for intensity representation. Notably, this method utilizes logarithmically fewer qubits compared to angle encoding. However, it comes at the expense of requiring arbitrary state preparation, which can be an operation of exponential cost.
 
