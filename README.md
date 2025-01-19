@@ -16,13 +16,22 @@ $$
 \ket{X_n} = \frac{1}{\sqrt{N}} \sum_{i=0}^{N-1} \ket{i} \otimes \ket{I_i}
 $$
 
-Here, the i$^{\text{th}}$ term in the $\ket{X_n}$ superposition corresponds to the pixel's number i in binary representation, tensor-multiplied with its intensity $I_i$. Consequently, the number of qubits required to encode an image with N pixels is given by $ceil(\log(N))+1=O(\log(N))$, where we need $ceil(\log(N))$ qubits to track N numbers and an additional qubit for intensity representation. Notably, this method utilizes logarithmically fewer qubits compared to angle encoding. However, it comes at the expense of requiring arbitrary state preparation, which can be an operation of exponential cost (9).
+Here, the i'th term in the $\ket{X_n}$ superposition corresponds to the pixel's number i in binary representation, tensor-multiplied with its intensity $I_i$. Consequently, the number of qubits required to encode an image with N pixels is given by $ceil(\log(N))+1=O(\log(N))$, where we need $ceil(\log(N))$ qubits to track N numbers and an additional qubit for intensity representation. Notably, this method utilizes logarithmically fewer qubits compared to angle encoding. However, it comes at the expense of requiring arbitrary state preparation, which can be an operation of exponential cost (9).
 
 For angle encoding-based classification, I adopted the tensor network approach employing four qubits, as outlined in the PennyLane demo (https://pennylane.ai/qml/demos/tutorial_tn_circuits/). Each two-qubit block in this configuration incorporates two RY gates and a CNOT, and each subsequent layer utilizes half the number of qubits compared to the preceding one. The final qubit in the network measures the expectation value of the Pauli $\hat{Z}$ matrix, denoted as $\braket{\hat{Z}}$. A negative $\braket{\hat{Z}}$ is interpreted as the model predicting the presence of a horizontal line in the image. Furthermore, during the exploration of 4x4 lines classification, an alternative block architecture will be investigated.
+
+The objective function is chosen to be the same as in the PennyLane demo:
+
+$$\mathcal{L}(\theta)=-\sum_{i=1}^{N}\hat{y_i}\text{sign}(\hat{y_i})$$,
+
+where $\hat{y}\in[-1,1]$ is the model's prediction for i'th image. Thus, if $\mathcal{L}(\theta)=-N$, model $\theta$ confidently classify all N training samples. By "confidently" I mean assigning labels strictly -1 and 1 to the right samples.
+
+The full quantum circuit with angle encoding is presented in the **Angle Encoding** section of the notebook. The first layer of RY gates is responsible for data encoding and is followed by three convolutional blocks with a total of six parameters to be learned. The full quantum circuit with amplitude encoding is presented in the **Amplitude Encoding** section of the notebook. State preparation module, $\ket{\Psi}$, is followed by two layers with a total of six parameters to be learned.
 
 ## Results
 
 As mentioned in the introduction, the goal was to classify compressed to 4x4 size 3s and 6s from MNIST handwritten digits datasets. The total number of training images is 12049 and the total number of testing images is 1968. I was training my models on only 1000 images as recommended in (4).
+
 
 ## References 
 
