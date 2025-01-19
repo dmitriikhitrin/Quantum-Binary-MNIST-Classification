@@ -32,6 +32,16 @@ The full quantum circuit with angle encoding is presented in the **Angle Encodin
 
 As mentioned in the introduction, the goal was to classify compressed to 4x4 size 3s and 6s from MNIST handwritten digits datasets. The total number of training images is 12049 and the total number of testing images is 1968. I was training my models on only 1000 images as recommended in (4).
 
+he models' performance is summarized in the following table:
+
+|                                       | Angle Encoding, Accuracy | Amplitude Encoding, Accuracy | Angle Encoding, F1 Score | Amplitude Encoding, F1 Score |
+| :-----------------------------------: | :----------------------: | :--------------------------: | :----------------------: | :--------------------------: |
+|     Training Data  (1000 images)      |          0.803           |            0.874             |          0.829           |            0.869             |
+|      Testing Data (1968 images)       |          0.780           |            0.891             |          0.803           |            0.883             |
+| Original Training Set  (12049 images) |          0.777           |            0.866             |          0.803           |            0.857             |
+
+The amplitude encoding model works better!!!
+
 
 ## References 
 
