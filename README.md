@@ -10,7 +10,7 @@ I used Xanadu's PennyLane Python package for Quantum Machine Learning (2) for mo
 
 In the upcoming exploration, two distinct data encoding methods will be investigated: conventional angle encoding and amplitude encoding. In the conventional angle encoding approach, the requisite number of qubits equals the number of pixels in the image, denoted as N. Each pixel's intensity is encoded through a rotation that is proportionate to its intensity value, facilitating straightforward implementation on a quantum backend. However, it's important to note that for larger images, such as 28x28, this method necessitates a quantum system comprising 784 qubits. This renders simulation unfeasible on classical devices and poses challenges for training on current noisy quantum hardware.
 
-In the amplitude encoding method, the encoding scheme is more intricate. The n'th training sample, denoted as \( X_n \), can be encoded as 
+In the amplitude encoding method, the encoding scheme is more intricate. The n'th training sample, denoted as $X_n$, can be encoded as 
 
 $$
 \ket{X_n} = \frac{1}{\sqrt{N}} \sum_{i=0}^{N-1} \ket{i} \otimes \ket{I_i}
